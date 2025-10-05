@@ -1027,6 +1027,7 @@
     sudo mysql --defaults-group-suffix=host1 $DB_NAME --force < 2025-02-06-add_usemweb.sql
     sudo mysql --defaults-group-suffix=host1 $DB_NAME --force < 2025-02-13-add_xelisv2-pepew.sql
     sudo mysql --defaults-group-suffix=host1 $DB_NAME --force < 2025-02-23-add_algo_kawpow.sql
+    sudo mysql --defaults-group-suffix=host1 $DB_NAME --force < 2025-10-05-add_argon2d1000.sql
 
     echo "SQL imports completed successfully!"
 
