@@ -1,12 +1,12 @@
-# Yiimp_install_scrypt v0.3 (update May, 2022)
+# Yiimp_install_script (update December, 2025)
 
-Official Yiimp (used in this script for Yiimp Installation): https://github.com/tpruvot/yiimp
+Official Yiimp (used in this script for Yiimp Installation): https://github.com/Soteria-Network/yiimp
 
 ---
 
-## Install script for yiimp on Ubuntu Server 16.04 / 18.04 (use Tpruvot's Yiimp)
+## Install script for yiimp on Ubuntu Server 22.04
 
-USE THIS SCRIPT ON FRESH INSTALL UBUNTU Server 16.04 / 18.04 !
+USE THIS SCRIPT ON FRESH INSTALL UBUNTU Server 22.04 !
 
 Connect on your VPS =>
 
@@ -19,15 +19,35 @@ Connect on your VPS =>
 - exit
 - su - pool
 - sudo apt -y install git
-- git clone https://github.com/Kudaraidee/yiimp_install_script.git
-- cd yiimp_install_scrypt/
+- git clone https://github.com/Soteria-Network/yiimp_install_script.git
+- cd yiimp_install_script/
+- sudo apt install php8.2-fpm php8.2-cli php8.2-mysql php8.2-curl php8.2-gd php8.2-xml php8.2-mbstring unzip
 - bash install.sh (DO NOT RUN THE SCRIPT AS ROOT or SUDO)
+  To check your server’s public IP quickly, run:
+- curl ifconfig.me or wget -qO- ifconfig.me // This will return the correct public IP to enter into the installer.
+- Enter the Public IP of the system you will use to access the admin panel (IP of YOUR PC where need to be access to Panel) : If you want to restrict admin panel access to only your own PC, you should enter your PC’s public IP address (the one your ISP assigns). You can find it by visiting https://ifconfig.me or https://whatismyipaddress.com from your PC.
+
+If your IP changes frequently (dynamic IP), you may get locked out later. In that case, you can either:
+
+    Enter 0.0.0.0 or leave it blank to allow access from any IP (less secure).
+
+    Or use a static IP / VPN with a fixed exit IP so you always connect from the same address.
+
+If you’re just testing locally and don’t care about restrictions, you can put the server’s own public IP (e.g., 37.224.20.228) so you can reach the panel from anywhere.
 - At the end, you MUST REBOOT to finalize installation...
 
+Enable and start php‑fpm
+sudo systemctl enable php8.2-fpm
+sudo systemctl start php8.2-fpm
+sudo systemctl status php8.2-fpm
+
+Check web services
+- sudo systemctl status nginx
+- sudo systemctl status php8.2-fpm
 Finish !
 
-- Go http://xxx.xxx.xxx.xxx or https://xxx.xxx.xxx.xxx (if you have chosen LetsEncrypt SSL). Enjoy !
-- Go http://xxx.xxx.xxx.xxx/site/myadmin or https://xxx.xxx.xxx.xxx/site/myadmin to access Panel Admin
+- Go http://37.224.20.228 or https://37.224.20.228 (if you have chosen LetsEncrypt SSL). Enjoy !
+- Go http://37.224.20.228/site/myadmin or https://37.224.20.228/site/myadmin to access Panel Admin
 
 If you are issue after installation (nginx,mariadb... not found), use this script : bash install-debug.sh (watch the log during installation)
 
